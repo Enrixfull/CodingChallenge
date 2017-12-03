@@ -12,6 +12,8 @@
 		63395FFE1FCE68A000650462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63395FFC1FCE68A000650462 /* Main.storyboard */; };
 		633960001FCE68A000650462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63395FFF1FCE68A000650462 /* Assets.xcassets */; };
 		633960031FCE68A000650462 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633960011FCE68A000650462 /* LaunchScreen.storyboard */; };
+		63E521E21FD3461B00E349DA /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E521E01FD3461B00E349DA /* MovieCollectionViewCell.swift */; };
+		63E521E31FD3461B00E349DA /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63E521E11FD3461B00E349DA /* MovieCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		63395FFF1FCE68A000650462 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		633960021FCE68A000650462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		633960041FCE68A000650462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63E521E01FD3461B00E349DA /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
+		63E521E11FD3461B00E349DA /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,48 @@
 		63395FF71FCE68A000650462 /* CodingChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				63FEB8A11FD2B661001BE117 /* ModelView */,
+				63FEB8A01FD2B64B001BE117 /* Model */,
 				63395FF81FCE68A000650462 /* AppDelegate.swift */,
-				63395FFA1FCE68A000650462 /* ViewController.swift */,
-				63395FFC1FCE68A000650462 /* Main.storyboard */,
+				63FEB89F1FD2B632001BE117 /* Controller */,
+				63FEB89E1FD2B61F001BE117 /* View */,
 				63395FFF1FCE68A000650462 /* Assets.xcassets */,
-				633960011FCE68A000650462 /* LaunchScreen.storyboard */,
 				633960041FCE68A000650462 /* Info.plist */,
 			);
 			path = CodingChallenge;
+			sourceTree = "<group>";
+		};
+		63FEB89E1FD2B61F001BE117 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63395FFC1FCE68A000650462 /* Main.storyboard */,
+				63E521E11FD3461B00E349DA /* MovieCollectionViewCell.xib */,
+				633960011FCE68A000650462 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63FEB89F1FD2B632001BE117 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				63E521E01FD3461B00E349DA /* MovieCollectionViewCell.swift */,
+				63395FFA1FCE68A000650462 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		63FEB8A01FD2B64B001BE117 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		63FEB8A11FD2B661001BE117 /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +164,7 @@
 				633960031FCE68A000650462 /* LaunchScreen.storyboard in Resources */,
 				633960001FCE68A000650462 /* Assets.xcassets in Resources */,
 				63395FFE1FCE68A000650462 /* Main.storyboard in Resources */,
+				63E521E31FD3461B00E349DA /* MovieCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63E521E21FD3461B00E349DA /* MovieCollectionViewCell.swift in Sources */,
 				63395FFB1FCE68A000650462 /* ViewController.swift in Sources */,
 				63395FF91FCE68A000650462 /* AppDelegate.swift in Sources */,
 			);
