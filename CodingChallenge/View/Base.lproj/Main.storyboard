@@ -48,8 +48,8 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="mqa-Gy-z3l" id="Uvw-dx-Hdu"/>
-                                    <outlet property="delegate" destination="mqa-Gy-z3l" id="GmI-Bh-8Jo"/>
+                                    <outlet property="dataSource" destination="mqa-Gy-z3l" id="9sd-GA-BLP"/>
+                                    <outlet property="delegate" destination="mqa-Gy-z3l" id="Xms-4X-UOn"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -264,8 +264,8 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="Y5h-IK-1TZ" id="OEb-Qh-xwu"/>
-                                    <outlet property="delegate" destination="Y5h-IK-1TZ" id="XUV-zN-Ckr"/>
+                                    <outlet property="dataSource" destination="Y5h-IK-1TZ" id="TyR-7A-raJ"/>
+                                    <outlet property="delegate" destination="Y5h-IK-1TZ" id="ZkJ-va-ddd"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -340,8 +340,8 @@
                                                     </collectionViewCell>
                                                 </cells>
                                                 <connections>
-                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="i1k-cE-M0Z"/>
-                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="Vzz-yS-GLU"/>
+                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="LWx-D7-PjV"/>
+                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="J8g-Sz-FEy"/>
                                                 </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Rated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlY-SW-cjM">
@@ -376,8 +376,8 @@
                                                     </collectionViewCell>
                                                 </cells>
                                                 <connections>
-                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="ioG-fN-89v"/>
-                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="RRg-kx-fZK"/>
+                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="7C1-am-rEm"/>
+                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="b0i-BN-Zcs"/>
                                                 </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUZ-pd-mVB">
@@ -412,8 +412,8 @@
                                                     </collectionViewCell>
                                                 </cells>
                                                 <connections>
-                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="BjY-bN-kVQ"/>
-                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="K1q-1h-9i4"/>
+                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="OTI-jA-k5q"/>
+                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="j7z-Dk-b9Z"/>
                                                 </connections>
                                             </collectionView>
                                         </subviews>
@@ -471,7 +471,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcw-54-iWD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="0Kv-xe-Q6n">
                     <connections>
-                        <outlet property="delegate" destination="gct-0d-vuQ" id="yZl-Y4-aBM"/>
                         <outlet property="searchContentsController" destination="gct-0d-vuQ" id="KMB-Cu-6zl"/>
                         <outlet property="searchResultsDataSource" destination="gct-0d-vuQ" id="Zqk-1O-Wgb"/>
                         <outlet property="searchResultsDelegate" destination="gct-0d-vuQ" id="jtD-CU-qE0"/>
@@ -480,10 +479,10 @@
             </objects>
             <point key="canvasLocation" x="428" y="1896.7016491754125"/>
         </scene>
-        <!--View Controller-->
+        <!--Popular View Controller-->
         <scene sceneID="8HO-fu-qUL">
             <objects>
-                <viewController id="Zyc-0p-oAN" sceneMemberID="viewController">
+                <viewController id="Zyc-0p-oAN" customClass="PopularViewController" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zvp-Ct-4aD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -516,10 +515,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="Zyc-0p-oAN" id="Tty-F4-wct"/>
-                                    <outlet property="delegate" destination="Zyc-0p-oAN" id="LlQ-l0-U71"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -536,6 +531,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="mostViewed" id="52u-PZ-pTx"/>
                     <connections>
+                        <outlet property="popularCollectionView" destination="4cy-e8-B8K" id="yIj-y7-glp"/>
                         <segue destination="YqO-xT-TDR" kind="show" identifier="fromPopularToShow" id="uYh-0M-Kr2"/>
                     </connections>
                 </viewController>
@@ -571,6 +567,6 @@
         <image name="star" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yet-Vh-Khx"/>
+        <segue reference="uYh-0M-Kr2"/>
     </inferredMetricsTieBreakers>
 </document>
