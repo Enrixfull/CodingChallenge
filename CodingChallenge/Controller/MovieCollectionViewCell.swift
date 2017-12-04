@@ -17,7 +17,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func getImageWeb(posterPath: String) {
-        print(posterPath)
         let url = URL(string: "https://image.tmdb.org/t/p/w130" + posterPath)!
         let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
             if let e = error {
@@ -25,11 +24,11 @@ class MovieCollectionViewCell: UICollectionViewCell {
             } else {
                 // No errors found.
                 if let res = response as? HTTPURLResponse {
-                    print("Downloaded picture with response code \(res.statusCode)")
+                    //print("Downloaded picture with response code \(res.statusCode)")
                     if let imageData = data {
                         //Convert data to image
                         let poster = UIImage(data: imageData)
-                        DispatchQueue.main.async { // Correct
+                        DispatchQueue.main.async {
                             self.moviePoster.image = poster
                         }
                     } else {

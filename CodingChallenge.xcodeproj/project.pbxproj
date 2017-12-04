@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1E87015B42FB0D7A6BCDD1F6 /* Pods_CodingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F72AFACB37B96773E05411E /* Pods_CodingChallenge.framework */; };
+		6317F22A1FD4E641003EE945 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317F2291FD4E641003EE945 /* TopViewController.swift */; };
+		6317F22C1FD4F07E003EE945 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317F22B1FD4F07E003EE945 /* UpcomingViewController.swift */; };
+		6317F22E1FD504D5003EE945 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317F22D1FD504D5003EE945 /* SearchViewController.swift */; };
 		63395FF91FCE68A000650462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63395FF81FCE68A000650462 /* AppDelegate.swift */; };
 		63395FFE1FCE68A000650462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63395FFC1FCE68A000650462 /* Main.storyboard */; };
 		633960001FCE68A000650462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63395FFF1FCE68A000650462 /* Assets.xcassets */; };
@@ -21,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		4FC42900AE0C69EDF241FFB4 /* Pods-CodingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-CodingChallenge/Pods-CodingChallenge.release.xcconfig"; sourceTree = "<group>"; };
+		6317F2291FD4E641003EE945 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
+		6317F22B1FD4F07E003EE945 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
+		6317F22D1FD504D5003EE945 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		63395FF51FCE68A000650462 /* CodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63395FF81FCE68A000650462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63395FFD1FCE68A000650462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -79,8 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				63395FF81FCE68A000650462 /* AppDelegate.swift */,
-				63FEB8A11FD2B661001BE117 /* ModelView */,
 				63FEB8A01FD2B64B001BE117 /* Model */,
+				63FEB8A11FD2B661001BE117 /* ModelView */,
 				63FEB89F1FD2B632001BE117 /* Controller */,
 				63FEB89E1FD2B61F001BE117 /* View */,
 				63395FFF1FCE68A000650462 /* Assets.xcassets */,
@@ -102,8 +108,11 @@
 		63FEB89F1FD2B632001BE117 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				63771F5C1FD48ABB00251701 /* PopularViewController.swift */,
 				63E521E01FD3461B00E349DA /* MovieCollectionViewCell.swift */,
+				63771F5C1FD48ABB00251701 /* PopularViewController.swift */,
+				6317F2291FD4E641003EE945 /* TopViewController.swift */,
+				6317F22B1FD4F07E003EE945 /* UpcomingViewController.swift */,
+				6317F22D1FD504D5003EE945 /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -256,10 +265,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6317F22A1FD4E641003EE945 /* TopViewController.swift in Sources */,
 				63771F5D1FD48ABB00251701 /* PopularViewController.swift in Sources */,
+				6317F22E1FD504D5003EE945 /* SearchViewController.swift in Sources */,
 				63E521E21FD3461B00E349DA /* MovieCollectionViewCell.swift in Sources */,
 				63E521E71FD3AECC00E349DA /* MovieViewModel.swift in Sources */,
 				63E521E51FD3ADD300E349DA /* Movie.swift in Sources */,
+				6317F22C1FD4F07E003EE945 /* UpcomingViewController.swift in Sources */,
 				63395FF91FCE68A000650462 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

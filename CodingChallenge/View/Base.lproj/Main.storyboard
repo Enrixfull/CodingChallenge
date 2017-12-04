@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Top View Controller-->
         <scene sceneID="Xqz-Sb-5Ea">
             <objects>
-                <viewController id="mqa-Gy-z3l" sceneMemberID="viewController">
+                <viewController id="mqa-Gy-z3l" customClass="TopViewController" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R6T-0A-Gr5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,10 +47,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="mqa-Gy-z3l" id="9sd-GA-BLP"/>
-                                    <outlet property="delegate" destination="mqa-Gy-z3l" id="Xms-4X-UOn"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,6 +63,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="topRated" id="Oka-An-clb"/>
                     <connections>
+                        <outlet property="topCollectionView" destination="Ebe-GM-SAX" id="1Nd-3d-Amw"/>
                         <segue destination="YqO-xT-TDR" kind="show" identifier="fromTopToShow" id="5QL-iR-8gX"/>
                     </connections>
                 </viewController>
@@ -230,7 +227,7 @@
         <!--Upcoming-->
         <scene sceneID="jBS-0E-Hc9">
             <objects>
-                <viewController id="Y5h-IK-1TZ" sceneMemberID="viewController">
+                <viewController id="Y5h-IK-1TZ" customClass="UpcomingViewController" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sUU-MB-4xS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,10 +260,6 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="Y5h-IK-1TZ" id="TyR-7A-raJ"/>
-                                    <outlet property="delegate" destination="Y5h-IK-1TZ" id="ZkJ-va-ddd"/>
-                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -283,6 +276,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Upcoming" image="proximo" selectedImage="proximo" id="mek-sy-L9i"/>
                     <connections>
+                        <outlet property="upcomingCollectionView" destination="32a-YZ-cGb" id="HGz-tY-fnV"/>
                         <segue destination="YqO-xT-TDR" kind="show" identifier="fromUpcomingToShow" id="ZwU-dA-WxB"/>
                     </connections>
                 </viewController>
@@ -290,10 +284,10 @@
             </objects>
             <point key="canvasLocation" x="434.39999999999998" y="1215.7421289355323"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="iUY-oX-0wS">
             <objects>
-                <viewController id="gct-0d-vuQ" sceneMemberID="viewController">
+                <viewController id="gct-0d-vuQ" customClass="SearchViewController" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OhT-me-ngQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -339,10 +333,6 @@
                                                         </view>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="LWx-D7-PjV"/>
-                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="J8g-Sz-FEy"/>
-                                                </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Rated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TlY-SW-cjM">
                                                 <rect key="frame" x="8" y="175" width="359" height="21"/>
@@ -353,13 +343,13 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wWg-oH-1Xn">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wWg-oH-1Xn">
                                                 <rect key="frame" x="8" y="204" width="359" height="130"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="130" id="ccd-Hs-g1X"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eoM-HJ-esc">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eoM-HJ-esc">
                                                     <size key="itemSize" width="80" height="120"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -375,10 +365,6 @@
                                                         </view>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="7C1-am-rEm"/>
-                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="b0i-BN-Zcs"/>
-                                                </connections>
                                             </collectionView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUZ-pd-mVB">
                                                 <rect key="frame" x="8" y="342" width="359" height="21"/>
@@ -389,13 +375,13 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-lf-SLU">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-lf-SLU">
                                                 <rect key="frame" x="8" y="371" width="359" height="130"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="130" id="DO9-GW-zLs"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OMP-5F-D8y">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OMP-5F-D8y">
                                                     <size key="itemSize" width="80" height="120"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -411,10 +397,6 @@
                                                         </view>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="gct-0d-vuQ" id="OTI-jA-k5q"/>
-                                                    <outlet property="delegate" destination="gct-0d-vuQ" id="j7z-Dk-b9Z"/>
-                                                </connections>
                                             </collectionView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -464,7 +446,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="xNw-mY-kd4"/>
                     <connections>
+                        <outlet property="popularCollectionView" destination="8E9-Ce-efQ" id="wWs-HF-XuY"/>
+                        <outlet property="searchBar" destination="a37-bJ-rYp" id="v53-aq-mge"/>
                         <outlet property="searchDisplayController" destination="0Kv-xe-Q6n" id="JT7-PG-w3R"/>
+                        <outlet property="topCollectionRated" destination="wWg-oH-1Xn" id="eOd-r3-2Dw"/>
+                        <outlet property="upcomingCollectionView" destination="7Po-lf-SLU" id="uhl-Mh-s5S"/>
                         <segue destination="YqO-xT-TDR" kind="show" identifier="fromSearchToShow" id="yet-Vh-Khx"/>
                     </connections>
                 </viewController>
@@ -567,6 +553,6 @@
         <image name="star" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uYh-0M-Kr2"/>
+        <segue reference="yet-Vh-Khx"/>
     </inferredMetricsTieBreakers>
 </document>
