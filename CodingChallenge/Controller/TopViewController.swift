@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TopViewController: UIViewController {
+class TopViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var topCollectionView: UICollectionView!
     let disposeBag = DisposeBag()
     let viewModel: MovieViewModel = MovieViewModel()
@@ -34,4 +34,13 @@ class TopViewController: UIViewController {
             }.disposed(by: disposeBag)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "fromTopToShow", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextViewController = segue.destination as! MovieDetailViewController
+        let indexPath = sender as! Int
+        nextViewController.movie = viewModel.movies.value[indexPath]
+    }
 }

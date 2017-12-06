@@ -21,21 +21,17 @@ extension MovieViewModel{
     
     //Function to get Movies by popularity
     func getMoviesPopular() {
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=" + apiKey + "&sort_by=popularity.desc")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=3f97490b8e3d47713954977903141f93&page=1")!
         getMoviesFromURL(url: url)
     }
-    //Function to get Top raated Movies
+    //Function to get Top rated Movies
     func getMoviesTop() {
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=" + apiKey + "&sort_by=vote_average.desc&page=1")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=3f97490b8e3d47713954977903141f93&page=1")!
         getMoviesFromURL(url: url)
     }
     //Function to get Upcoming Movies
     func getMoviesUpcoming() {
-        //Get current date
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let currentDate = formatter.string(from: Date())
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=" + apiKey + "&sort_by=popularity.desc&page=1&primary_release_date.gte=" + currentDate)!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=3f97490b8e3d47713954977903141f93&page=1")!
         getMoviesFromURL(url: url)
     }
     //Funtion to search movies
@@ -90,13 +86,13 @@ extension MovieViewModel{
         self.movies.asObservable().subscribe({ value in
             self.searchPopularMovies.value = (value.element?.sorted(by: { $0.popularity > $1.popularity }))!
             self.searchTopMovies.value = (value.element?.sorted(by: { $0.rate > $1.rate }))!
-            if let lastItem = value.element?.last{
+            for movie in self.movies.value{
                 //Get current date
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
-                let releaseDate = formatter.date(from: lastItem.date) ?? Date()
+                let releaseDate = formatter.date(from: movie.date) ?? Date()
                 if releaseDate > Date(){
-                    self.searchUpcomingMovies.value.append(lastItem)
+                    self.searchUpcomingMovies.value.append(movie)
                 }
             }
         })

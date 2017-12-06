@@ -17,13 +17,13 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
     
     func getImageWeb(posterPath: String) {
-        let url = URL(string: "https://image.tmdb.org/t/p/w130" + posterPath)!
+        let url = URL(string: "https://image.tmdb.org/t/p/w154" + posterPath)!
         let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
             if let e = error {
                 print("Error downloading picture: \(e)")
             } else {
                 // No errors found.
-                if let res = response as? HTTPURLResponse {
+                if (response as? HTTPURLResponse) != nil {
                     //print("Downloaded picture with response code \(res.statusCode)")
                     if let imageData = data {
                         //Convert data to image

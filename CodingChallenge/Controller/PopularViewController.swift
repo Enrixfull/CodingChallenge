@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class PopularViewController: UIViewController {
+class PopularViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var popularCollectionView: UICollectionView!
     let disposeBag = DisposeBag()
     let viewModel: MovieViewModel = MovieViewModel()
@@ -32,6 +32,16 @@ class PopularViewController: UIViewController {
         viewModel.movies.asObservable().bind(to: self.popularCollectionView.rx.items(cellIdentifier: "customCollectionCell", cellType: MovieCollectionViewCell.self)) { row, data, cell in
                 cell.getImageWeb(posterPath: data.posterPath)
             }.disposed(by: disposeBag)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "fromPopularToShow", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextViewController = segue.destination as! MovieDetailViewController
+        let indexPath = sender as! Int
+        nextViewController.movie = viewModel.movies.value[indexPath]
     }
     
 }

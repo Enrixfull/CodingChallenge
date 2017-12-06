@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var topCollectionRated: UICollectionView!
@@ -54,6 +54,17 @@ class SearchViewController: UIViewController {
                 cell.getImageWeb(posterPath: data.posterPath)
             }.disposed(by: disposeBag)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "fromSearchToShow", sender: indexPath.row)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextViewController = segue.destination as! MovieDetailViewController
+        let indexPath = sender as! Int
+        nextViewController.movie = viewModel.movies.value[indexPath]
+    }
+    
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
