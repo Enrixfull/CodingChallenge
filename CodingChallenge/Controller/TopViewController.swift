@@ -30,7 +30,7 @@ class TopViewController: UIViewController, UICollectionViewDelegate {
     func setupCellConfiguration(){
         topCollectionView.register(UINib(nibName:"MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
         viewModel.movies.asObservable().bind(to: self.topCollectionView.rx.items(cellIdentifier: "customCollectionCell", cellType: MovieCollectionViewCell.self)) { row, data, cell in
-            cell.getImageWeb(posterPath: data.posterPath)
+            cell.getImage(posterPath: data.posterPath)
             }.disposed(by: disposeBag)
     }
     

@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1E87015B42FB0D7A6BCDD1F6 /* Pods_CodingChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F72AFACB37B96773E05411E /* Pods_CodingChallenge.framework */; };
+		631502951FD7D152008DE11C /* DBCodingChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631502941FD7D152008DE11C /* DBCodingChallenge.swift */; };
 		6317F22A1FD4E641003EE945 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317F2291FD4E641003EE945 /* TopViewController.swift */; };
 		6317F22C1FD4F07E003EE945 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317F22B1FD4F07E003EE945 /* UpcomingViewController.swift */; };
 		6317F22E1FD504D5003EE945 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6317F22D1FD504D5003EE945 /* SearchViewController.swift */; };
 		6317F2301FD5429A003EE945 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6317F22F1FD5429A003EE945 /* libsqlite3.tbd */; };
 		6318DADB1FD6166E008981E6 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6318DADA1FD6166E008981E6 /* MovieDetailViewController.swift */; };
+		6325ACF31FD8CC53003B2A5A /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6325ACF21FD8CC53003B2A5A /* DetailViewModel.swift */; };
 		63395FF91FCE68A000650462 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63395FF81FCE68A000650462 /* AppDelegate.swift */; };
 		63395FFE1FCE68A000650462 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63395FFC1FCE68A000650462 /* Main.storyboard */; };
 		633960001FCE68A000650462 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63395FFF1FCE68A000650462 /* Assets.xcassets */; };
@@ -26,12 +28,14 @@
 
 /* Begin PBXFileReference section */
 		4FC42900AE0C69EDF241FFB4 /* Pods-CodingChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodingChallenge.release.xcconfig"; path = "Pods/Target Support Files/Pods-CodingChallenge/Pods-CodingChallenge.release.xcconfig"; sourceTree = "<group>"; };
+		631502941FD7D152008DE11C /* DBCodingChallenge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBCodingChallenge.swift; sourceTree = "<group>"; };
 		6317F2291FD4E641003EE945 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		6317F22B1FD4F07E003EE945 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
 		6317F22D1FD504D5003EE945 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		6317F22F1FD5429A003EE945 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6317F2311FD5433F003EE945 /* CodingChallenge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CodingChallenge-Bridging-Header.h"; sourceTree = "<group>"; };
 		6318DADA1FD6166E008981E6 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		6325ACF21FD8CC53003B2A5A /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		63395FF51FCE68A000650462 /* CodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63395FF81FCE68A000650462 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63395FFD1FCE68A000650462 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 		6317F2341FD54470003EE945 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
+				631502941FD7D152008DE11C /* DBCodingChallenge.swift */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				63E521E61FD3AECC00E349DA /* MovieViewModel.swift */,
+				6325ACF21FD8CC53003B2A5A /* DetailViewModel.swift */,
 			);
 			path = ModelView;
 			sourceTree = "<group>";
@@ -290,7 +296,9 @@
 				63E521E71FD3AECC00E349DA /* MovieViewModel.swift in Sources */,
 				6318DADB1FD6166E008981E6 /* MovieDetailViewController.swift in Sources */,
 				63E521E51FD3ADD300E349DA /* Movie.swift in Sources */,
+				631502951FD7D152008DE11C /* DBCodingChallenge.swift in Sources */,
 				6317F22C1FD4F07E003EE945 /* UpcomingViewController.swift in Sources */,
+				6325ACF31FD8CC53003B2A5A /* DetailViewModel.swift in Sources */,
 				63395FF91FCE68A000650462 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

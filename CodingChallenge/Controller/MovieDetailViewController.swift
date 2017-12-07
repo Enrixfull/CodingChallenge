@@ -7,13 +7,18 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MovieDetailViewController: UIViewController {
     @IBOutlet weak var backDropImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDate: UILabel!
     @IBOutlet weak var movieDescription: UITextView!
+    @IBOutlet weak var downloadButton: UIButton!
     var movie: Movie?
+    let movieDownloaded: Variable<Bool> = Variable(false)
+    let viewModel: DetailViewModel = DetailViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +28,29 @@ class MovieDetailViewController: UIViewController {
             movieDate.text = movie?.date
             movieDescription.text = movie?.description
             getBackDropImage(backdropPath: (movie?.backdropPath)!)
+            let dbCodingChallege = DBCodingChallenge()
+            dbCodingChallege.initDB()
+            let movies = dbCodingChallege.getMovies()
+            for mov in movies{
+                if mov.id == movie?.id{
+                    movieDownloaded.value = true
+                }
+            }
         }
+        movieDownloaded.asObservable().subscribe(onNext: { value in
+            if value {
+                DispatchQueue.main.async {
+                    self.downloadButton.setTitle("Delete", for: [])
+                    self.downloadButton.setImage(UIImage(named: "delete"), for: [])
+                }
+            } else{
+                DispatchQueue.main.async {
+                    self.downloadButton.setTitle("Download", for: [])
+                    self.downloadButton.setImage(UIImage(named: "download"), for: [])
+                }
+            }
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +59,32 @@ class MovieDetailViewController: UIViewController {
     }
     
     @IBAction func donwloadMovie(_ sender: Any) {
+        let dbCodingChallege = DBCodingChallenge()
+        dbCodingChallege.initDB()
+        if movieDownloaded.value {
+            if dbCodingChallege.deleteMovie(id: (movie?.id)!){
+                movieDownloaded.value = false
+            }
+        } else{
+            var path = movie?.posterPath ?? ""
+            self.viewModel.saveImageFromWeb(url: "https://image.tmdb.org/t/p/w154",imagePath: path, isPosterPath: true)
+            self.viewModel.savePosterPath.asObservable().subscribe(onNext: { value in
+                if value != ""{
+                    self.movie?.posterPath = value
+                }
+            })
+            path = movie?.backdropPath ?? ""
+            self.viewModel.saveImageFromWeb(url: "https://image.tmdb.org/t/p/w300", imagePath: path, isPosterPath: false)
+            self.viewModel.saveBackdropPath.asObservable().subscribe(onNext: { value in
+                if value != ""{
+                    self.movie?.backdropPath = value
+                    if dbCodingChallege.insertMovie(movie: self.movie!){
+                        self.movieDownloaded.value = true
+                    }
+                }
+            })
+            
+        }
         
     }
     
@@ -40,29 +93,34 @@ class MovieDetailViewController: UIViewController {
     }
     
     func getBackDropImage(backdropPath: String) {
-        let url = URL(string: "https://image.tmdb.org/t/p/w300" + backdropPath)!
-        let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
-            if let e = error {
-                print("Error downloading picture: \(e)")
-            } else {
-                // No errors found.
-                if (response as? HTTPURLResponse) != nil {
-                    //print("Downloaded picture with response code \(res.statusCode)")
-                    if let imageData = data {
-                        //Convert data to image
-                        let backdrop = UIImage(data: imageData)
-                        DispatchQueue.main.async {
-                            self.backDropImage.image = backdrop
+        if viewModel.connectedToNetwork() {
+            let url = URL(string: "https://image.tmdb.org/t/p/w300" + backdropPath)!
+            let task = URLSession.shared.dataTask(with: url){ (data, response, error) in
+                if let e = error {
+                    print("Error downloading picture: \(e)")
+                } else {
+                    // No errors found.
+                    if (response as? HTTPURLResponse) != nil {
+                        if let imageData = data {
+                            //Convert data to image
+                            let backdrop = UIImage(data: imageData)
+                            DispatchQueue.main.async {
+                                self.backDropImage.image = backdrop
+                            }
+                        } else {
+                            print("Couldn't get image")
                         }
                     } else {
-                        print("Couldn't get image")
+                        print("Couldn't get response code for some reason")
                     }
-                } else {
-                    print("Couldn't get response code for some reason")
                 }
             }
+            task.resume()
+        }else {
+            self.backDropImage.image = UIImage(named: backdropPath)
+            print("backdrop: " + backdropPath)
         }
-        task.resume()
     }
+    
     
 }

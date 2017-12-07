@@ -231,6 +231,7 @@
                     <navigationItem key="navigationItem" id="dbF-ps-m3K"/>
                     <connections>
                         <outlet property="backDropImage" destination="T4W-rs-zEX" id="cSZ-YE-30P"/>
+                        <outlet property="downloadButton" destination="9dt-Zi-4dK" id="dHh-tV-28H"/>
                         <outlet property="movieDate" destination="rz0-u1-AFA" id="K0p-wG-smk"/>
                         <outlet property="movieDescription" destination="T43-v8-R5v" id="2Ts-Fn-h6g"/>
                         <outlet property="movieTitle" destination="1xG-GA-0w1" id="exE-qx-NwE"/>

@@ -41,17 +41,17 @@ class SearchViewController: UIViewController, UICollectionViewDelegate {
         //Configuration popularCollectionViewCell
         popularCollectionView.register(UINib(nibName:"MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
         viewModel.searchPopularMovies.asObservable().bind(to: self.popularCollectionView.rx.items(cellIdentifier: "customCollectionCell", cellType: MovieCollectionViewCell.self)) { row, data, cell in
-                cell.getImageWeb(posterPath: data.posterPath)
+                cell.getImage(posterPath: data.posterPath)
             }.disposed(by: disposeBag)
         //Configuration topColectionViewCell
         topCollectionRated.register(UINib(nibName:"MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
         viewModel.searchTopMovies.asObservable().bind(to: self.topCollectionRated.rx.items(cellIdentifier: "customCollectionCell", cellType: MovieCollectionViewCell.self)) { row, data, cell in
-                cell.getImageWeb(posterPath: data.posterPath)
+                cell.getImage(posterPath: data.posterPath)
             }.disposed(by: disposeBag)
         //Configuration upcomingCollectionViewCell
         upcomingCollectionView.register(UINib(nibName:"MovieCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "customCollectionCell")
         viewModel.searchUpcomingMovies.asObservable().bind(to: self.upcomingCollectionView.rx.items(cellIdentifier: "customCollectionCell", cellType: MovieCollectionViewCell.self)) { row, data, cell in
-                cell.getImageWeb(posterPath: data.posterPath)
+                cell.getImage(posterPath: data.posterPath)
             }.disposed(by: disposeBag)
     }
     
@@ -59,6 +59,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate {
         self.performSegue(withIdentifier: "fromSearchToShow", sender: indexPath.row)
     }
     
+    //Override de prepare function to pass a movie object
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextViewController = segue.destination as! MovieDetailViewController
         let indexPath = sender as! Int

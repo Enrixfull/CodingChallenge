@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import SystemConfiguration
 
 class MovieViewModel {
     let apiKey = "3f97490b8e3d47713954977903141f93"
@@ -21,25 +22,67 @@ extension MovieViewModel{
     
     //Function to get Movies by popularity
     func getMoviesPopular() {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=3f97490b8e3d47713954977903141f93&page=1")!
-        getMoviesFromURL(url: url)
+        if connectedToNetwork(){
+            let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=" + apiKey + "&page=1")!
+            getMoviesFromURL(url: url)
+        }else{
+            let dbCodingChallenge = DBCodingChallenge()
+            dbCodingChallenge.initDB()
+            self.movies.value = dbCodingChallenge.getMovies()
+            self.movies.value = (movies.value.sorted(by: { $0.popularity > $1.popularity }))
+        }
+        
     }
     //Function to get Top rated Movies
     func getMoviesTop() {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=3f97490b8e3d47713954977903141f93&page=1")!
-        getMoviesFromURL(url: url)
+        if connectedToNetwork(){
+            let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=" + apiKey + "&page=1")!
+            getMoviesFromURL(url: url)
+        }else{
+            let dbCodingChallenge = DBCodingChallenge()
+            dbCodingChallenge.initDB()
+            self.movies.value = dbCodingChallenge.getMovies()
+            self.movies.value = (movies.value.sorted(by: { $0.rate > $1.rate }))
+        }
+        
     }
     //Function to get Upcoming Movies
     func getMoviesUpcoming() {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=3f97490b8e3d47713954977903141f93&page=1")!
-        getMoviesFromURL(url: url)
+        if connectedToNetwork(){
+            let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=" + apiKey + "&page=1")!
+            getMoviesFromURL(url: url)
+        }else{
+            let dbCodingChallenge = DBCodingChallenge()
+            dbCodingChallenge.initDB()
+            self.movies.value = dbCodingChallenge.getMovies()
+            self.searchUpcomingMovies.value.removeAll()
+            for movie in self.movies.value{
+                //Get current date
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                let releaseDate = formatter.date(from: movie.date) ?? Date()
+                if releaseDate > Date(){
+                    self.searchUpcomingMovies.value.append(movie)
+                }
+            }
+            self.movies.value = self.searchUpcomingMovies.value
+        }
     }
     //Funtion to search movies
     func searchMovies(query: String) {
-        var finalQuery = query.replacingOccurrences(of: " ", with: "%20")
-        finalQuery = finalQuery.replacingOccurrences(of: "ñ", with: "n")
-        let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + finalQuery + "&page=1")!
-        getMoviesFromURL(url: url)
+        if connectedToNetwork(){
+            var finalQuery = query.replacingOccurrences(of: " ", with: "%20")
+            finalQuery = finalQuery.replacingOccurrences(of: "ñ", with: "n")
+            let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey + "&query=" + finalQuery + "&page=1")!
+            getMoviesFromURL(url: url)
+        }else{
+            let dbCodingChallenge = DBCodingChallenge()
+            dbCodingChallenge.initDB()
+            let downloadedMovies = dbCodingChallenge.getMovies()
+            self.movies.value = downloadedMovies.filter({
+                $0.name.range(of: query, options: .caseInsensitive) != nil
+            })
+        }
         sortMovies()
     }
     func getMoviesFromURL(url: URL){
@@ -98,4 +141,28 @@ extension MovieViewModel{
         })
         
     }
+    
+    //Function that return if the device is connected to the network
+
+    func connectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
+            return false
+        }
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+        
+        return (isReachable && !needsConnection)
+    }
+    
 }
