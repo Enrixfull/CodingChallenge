@@ -1,0 +1,60 @@
+Capas de la aplicación “Coding Challenge”
+
+Modelos (Objetos)
+
+Pelicula.swift
+Define la esctructura de los datos requeridos sobre la película para el uso de la aplicacion
+-	Pelicula 
+o	id		int
+o	name		String
+o	rate		double
+o	popularity	double
+o	date		String
+o	description	String
+o	posterPath	String
+o	backdropPath	String
+
+Percistencia
+La clase DBCodingChallenge contiene las funciones para inicializar la base de datos, así como para consultar y modificar datos
+
+La base de datos está compuesta por una tabla Movies con los siguientes campos:
+-	id			Integer
+-	name			Text
+-	rate			Float
+-	popularity		Float
+-	date			Date
+-	description		Text
+-	poster_path		Text
+-	backdrop_path	Text
+
+Para guardar las imgenes se guardan las rutas donde las imágenes se descargan en el teléfono, estas rutas van en los campos poster_path y backdrop_path de la base de datos 
+
+ViewModels
+Se realizaron dos clases ViewModel:
+-	MovieViewModel: ViewModel que se usa en las pantallas principales ya que comparten prácticamente la misma funcionalidad, se comunica con datos del tipo Movie
+-	DetailViewModel: ViewModel que se usa en la pantalla de detalles de película, se comunica con la memoria del teléfono para guardar las imágenes
+
+ViewControllers
+
+La aplicación está compuesta de 5 ViewController: 
+-	PupularViewController: Controla la vista principal donde se muestran las películas mas populares, hace uso de MovieViewModel así como de RxSwift para realizar el binding.
+-	TopViewController: Controla la vista principal donde se muestran las películas mejor calificadas, hace uso de MovieViewModel así como de RxSwift para realizar el binding.
+-	UpcomingViewController: Controla la vista principal donde se muestran las procimas a estrenarse, hace uso de MovieViewModel así como de RxSwift para realizar el binding.
+-	SearchViewController: Controla la vista donde se muestran la película que se obtienen como resultado de una búsqueda. Hace uso de MovieViewModel así como de RxSwift para realizar el binding.
+-	MovieDetailViewController: Controla la vista donde se muestran los detalles de las películas, de igual forma hace uso de RxSwift, en este caso para mostrar si la película esta descargada o no
+
+UI (Interfaz de Usuario)
+
+La interfaz de usurio esta compuesta de 5 ViewController: 
+-	PupularViewController
+-	TopViewController
+-	UpcomingViewController
+-	SearchViewController
+-	MovieDetailViewController
+
+Para la navegación en la aplicación se implementa un TabBar Menu, que se encarga de direccionar a los primeros cuatro ViewControllers. Para acceder a DetailViewController solo es necesario tocar la imagen de la película que se quieran conocer sus detalles.
+
+Para la interface de usuario se usan los siguientes archivos:
+-	Main.storyboard: Story board principal.
+-	MovieCollectionViewCell.xib: CustomCell para los diferentes CollectionView de la app.
+-	LaunchScreen.storyboard: Storyboard para la pantalla de inicio.
